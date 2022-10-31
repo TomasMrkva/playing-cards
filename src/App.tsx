@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import PlayingCard from './components/PlayingCard';
+import { cards, Card } from './cards';
+import './app.css';
 
-function App() {
+function BackGround() {
+
+  const [shownCards, setShownCards] = useState<Card[]>(cards);
+
+  const drawCard = (card: Card) => {
+    setShownCards(shownCards?.filter(c => c.value !== card.value || c.type !== card.type));
+  }
+
+  const shuffleCards = () => {
+    setShownCards(prev => [...prev.sort(() => Math.random() - 0.5)]);
+  }
+
+  const sortCards = () => {
+    setShownCards(prev => [...prev.sort((a, b) => a.type === b.type ? a.value - b.value : a.type < b.type ? -1 : 1)]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <div id="header">
+        <button onClick={shuffleCards}>SHUFFLE</button>
+        <button onClick={sortCards}>SORT</button>
+      </div>
+      <div id="background">
+      {
+        shownCards && shownCards.map((card: Card) => <PlayingCard {...{card, drawCard}}/>)
+      }
     </div>
+  </div>
   );
 }
 
-export default App;
+export default BackGround;

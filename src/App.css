@@ -1,38 +1,73 @@
-.App {
-  text-align: center;
+.card {
+    padding: 10px;
+    position: relative;
+    user-select: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card-overlay {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    font-size: 20px;
+    font-weight: bold;
+    opacity: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card:hover > .card-overlay {
+    opacity: 1;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.card:hover {
+    transform: scale(1.1);
 }
 
-.App-link {
-  color: #61dafb;
+.card:hover > img {
+    filter: opacity(50%) drop-shadow(0 0 1px #000);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#background {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 25px;
+}
+
+#header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+button {
+    background-color: #555;
+    border: none;
+    color: #FFF;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    border: 2px solid #555;
+    border-radius: 10px;
+    user-select: none;
+}
+
+button:hover {
+    background-color: #FFF; /* Green */
+    color: #555;
 }
